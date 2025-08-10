@@ -28,7 +28,7 @@ bird_x = 50
 bird_y = HEIGHT // 2
 bird_velocity = 0
 gravity = 0.3
-jump_strength = -4.4
+jump_strength = -5
 
 # Pipa
 pipe_width = 60
@@ -39,7 +39,7 @@ gap_min, gap_max = 100, 150  # default
 # Skor
 score = 0
 
-# Load assets and scale
+# Load assets and scale 
 background = pygame.image.load("Assets/background2.png")
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 pipes_image = pygame.image.load("Assets/pipabg.png")
@@ -67,7 +67,7 @@ def set_difficulty(mode):
     global pipe_speed, gravity, gap_min, gap_max
     if mode == "Noob":
         pipe_speed = 3
-        gravity = 0.3
+        gravity = 0.26
         gap_min, gap_max = 150, 220
     elif mode == "Pro":
         pipe_speed = 3
@@ -184,11 +184,11 @@ while True:
             if i % 2 == 0:
                 flipped_pipe = pygame.transform.flip(pipes_image, False, True)
                 screen.blit(flipped_pipe, (pipe.x, pipe.bottom - 400))
-            else:
+            else: 
                 screen.blit(pipes_image, (pipe.x, pipe.y))
 
         # Gambar burung
-        pygame.draw.rect(screen, YELLOW, bird_rect)
+        pygame.draw.rect(screen, (0, 0, 0), bird_rect)
 
         # Cek tabrakan
         for pipe in pipes:
