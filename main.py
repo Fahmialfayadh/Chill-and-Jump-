@@ -14,7 +14,7 @@ WHITE = (255, 255, 255)
 YELLOW = (255, 255, 0)
 
 # Font setup
-font = pygame.font.Font("Assets/SF Pixelate Shaded Bold.ttf", 20)
+font = pygame.font.Font("Assets/SF Pixelate Bold Oblique.ttf", 20)
 font_score = pygame.font.SysFont("Arial", 30)
 
 # Game state
@@ -66,7 +66,7 @@ def create_pipe():
 def set_difficulty(mode):
     global pipe_speed, gravity, gap_min, gap_max
     if mode == "Noob":
-        pipe_speed = 3
+        pipe_speed = 3.5
         gravity = 0.26
         gap_min, gap_max = 150, 220
     elif mode == "Pro":
@@ -143,7 +143,7 @@ while True:
 
     # --- Render states ---
     if game_state == "menu":
-        title = font.render("Chill and Jump", True, (0, 0, 0))
+        title = font.render("Chill and Jump", True, WHITE)
         prompt = font.render("Press SPACE to select mode", True, (0, 0, 0))
         screen.blit(title, (WIDTH // 2 - title.get_width() // 2, HEIGHT // 3))
         screen.blit(prompt, (WIDTH // 2 - prompt.get_width() // 2, HEIGHT // 2))
@@ -200,13 +200,18 @@ while True:
             game_state = "gameover"
 
         # Skor
-        score_text = font_score.render(str(score), True, (255, 0, 0))
+        score_text = font_score.render(str(score), True, WHITE)
         screen.blit(score_text, (WIDTH // 2, 20))
 
     elif game_state == "gameover":
-        game_over_text = font.render("GAME OVER", True, WHITE)
-        retry_text = font.render("Press SPACE to menu", True, WHITE)
-        final_score = font.render(f"Skor: {score}", True, WHITE)
+        if score >= 10:  
+            game_over_text = font.render(f"yaa mayanlahya dapat {score}", True, WHITE)
+            retry_text = font.render("Press SPACE to menu", True, WHITE)
+            final_score = font.render(f"Skor: {score}", True, WHITE)
+        else:
+            game_over_text = font.render("Game Over NOOB", True, (255, 0, 0))
+            retry_text = font.render("Press SPACE to retry", True, (0, 0, 0))
+            final_score = font.render(f"Skor: {score}", True, WHITE)
         screen.blit(game_over_text, (WIDTH // 2 - game_over_text.get_width() // 2, HEIGHT // 3))
         screen.blit(final_score, (WIDTH // 2 - final_score.get_width() // 2, HEIGHT // 2))
         screen.blit(retry_text, (WIDTH // 2 - retry_text.get_width() // 2, HEIGHT // 1.5))
