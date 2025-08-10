@@ -13,7 +13,7 @@ FPS = 60
 WHITE = (255, 255, 255)
 YELLOW = (255, 255, 0)
 
-# Font setup
+# Font
 font = pygame.font.Font("Assets/SF Pixelate Bold Oblique.ttf", 20)
 font_score = pygame.font.SysFont("Arial", 30)
 
@@ -87,7 +87,6 @@ while True:
     mode_rects = []
     if game_state == "gamemode":
         for i, mode in enumerate(modes):
-            # buat surface dulu untuk dapat rect yang tepat
             color = (255, 0, 0) if i == selected_mode else (0, 0, 0)
             mode_surf = font_score.render(mode, True, color)
             rect = mode_surf.get_rect(center=(WIDTH // 2, HEIGHT // 2 + i * 40))
